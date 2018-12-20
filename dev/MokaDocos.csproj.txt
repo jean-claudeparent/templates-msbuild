@@ -1,0 +1,36 @@
+<Project>
+
+<PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net45</TargetFramework>
+    <repository>d:\Devcenter\sources\</repository>
+    <buildDirectory>d:\Devcenter\build\TempBuild\sources\</buildDirectory>
+    <Logiciel>MokaDocos</Logiciel>
+    <VersionLogiciel>0.1.1</VersionLogiciel>
+</PropertyGroup>
+
+<ItemGroup>
+    <Compile Remove="JCAMiniCore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove=".DS_Store" />
+    <None Remove="MokaDocos-gabarit.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="MokaDocos-License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="MokaDocos-gabarit.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MokaDocos-gabarit.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+<Target Name="MokaDocosnet45">
+<csc Sources="@(Compile)" />
+
+</Target>
+</Project>
