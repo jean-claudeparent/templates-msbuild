@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net45</TargetFramework>
     <repository>d:\Devcenter\sources\</repository>
-    <buildDirectory>d:\Devcenter\build\TempBuild\sources\</buildDirectory>
+    <OutputDirectory>d:\Devcenter\build\TempBuild\bin\</OutputDirectory>
     <Logiciel>MokaDocos</Logiciel>
     <VersionLogiciel>0.1.1</VersionLogiciel>
 </PropertyGroup>
@@ -30,7 +30,9 @@
     </Content>
   </ItemGroup>
 <Target Name="MokaDocosnet45">
-<csc Sources="@(Compile)" />
+  <RemoveDir  
+            Directories="$(OutputDirectory)$(Logiciel)\$(VersionLogiciel)\" />
+  <csc Sources="@(Compile)" />
 
 </Target>
 </Project>
