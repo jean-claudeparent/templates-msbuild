@@ -1,17 +1,18 @@
-<Project>
+<Project DefaultTargets="MokaDocosnet45">
 
 <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Dll</OutputType>
     <TargetFramework>net45</TargetFramework>
     <repository>d:\Devcenter\sources\</repository>
-    <OutputDirectory>d:\Devcenter\build\TempBuild\bin\</OutputDirectory>
+    <OutputDirectory>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\</OutputDirectory>
     <Logiciel>MokaDocos</Logiciel>
     <VersionLogiciel>0.1.1</VersionLogiciel>
 </PropertyGroup>
 
 <ItemGroup>
-    <Compile Remove="JCAMiniCore.cs" />
-  </ItemGroup>
+    <Compile Include="*\*.cs"/>
+    <Compile Include="*.cs"/>
+</ItemGroup>
   <ItemGroup>
     <None Remove=".DS_Store" />
     <None Remove="MokaDocos-gabarit.html" />
@@ -30,9 +31,13 @@
     </Content>
   </ItemGroup>
 <Target Name="MokaDocosnet45">
-  <RemoveDir  
-            Directories="$(OutputDirectory)$(Logiciel)\$(VersionLogiciel)\" />
-  <csc Sources="@(Compile)" />
+  <Message Text="Builder : $(OutputDirectory)\$(TargetFramework)\" />
+  <RemoveDir  Directories="$(OutputDirectory)\$(Logiciel)\$(TargetFramework)" />
+  <MakeDir  Directories="$(OutputDirectory)\$(Logiciel)\$(TargetFramework)" />
+  
+  <csc Sources="@(Compile)"
+     OutputAssembly="$(OutputDirectory)\$(Logiciel)\$(TargetFramework)\$(Logiciel).dll"
+     EmitDebugInformation="false"  />
 
 </Target>
 </Project>
