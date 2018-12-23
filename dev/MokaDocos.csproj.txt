@@ -1,4 +1,4 @@
-<Project DefaultTargets="MokaDocosnet45">
+<Project DefaultTargets="main">
 
 <PropertyGroup>
     <OutputType>Dll</OutputType>
@@ -30,6 +30,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+
+<Target Name="main">
+  <CallTarget Targets="MokaDocosnet45" />
+</Target>
+
 <Target Name="MokaDocosnet45">
  <PropertyGroup>
   <TargetFramework>net45</TargetFramework>
