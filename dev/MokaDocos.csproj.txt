@@ -2,11 +2,11 @@
 
 <PropertyGroup>
     <OutputType>Dll</OutputType>
-    <TargetFramework>net45</TargetFramework>
     <repository>d:\Devcenter\sources\</repository>
-    <OutputDirectory>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\</OutputDirectory>
-    <Logiciel>MokaDocos</Logiciel>
+     <Logiciel>MokaDocos</Logiciel>
     <VersionLogiciel>0.1.1</VersionLogiciel>
+<OutputDirectory>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\lib\</OutputDirectory>
+   
 </PropertyGroup>
 
 <ItemGroup>
@@ -31,12 +31,19 @@
     </Content>
   </ItemGroup>
 <Target Name="MokaDocosnet45">
-  <Message Text="Builder : $(OutputDirectory)\$(TargetFramework)\" />
-  <RemoveDir  Directories="$(OutputDirectory)\$(Logiciel)\$(TargetFramework)" />
-  <MakeDir  Directories="$(OutputDirectory)\$(Logiciel)\$(TargetFramework)" />
+ <PropertyGroup>
+  <TargetFramework>net45</TargetFramework>
+  <NugetOutputLib>$(OutputDirectory)$(TargetFramework)\</NugetOutputLib>
+ </PropertyGroup>
+ 
+  
+
+  <Message Text="Builder : $(NugetOutputLib)" />
+  <RemoveDir  Directories="$(NugetOutputLib" />
+  <MakeDir  Directories="$(NugetOutputLib)" />
   
   <csc Sources="@(Compile)"
-     OutputAssembly="$(OutputDirectory)\$(Logiciel)\$(TargetFramework)\$(Logiciel).dll"
+     OutputAssembly="$(NugetOutputLib)\$(Logiciel).dll"
      EmitDebugInformation="false"  />
 
 </Target>
