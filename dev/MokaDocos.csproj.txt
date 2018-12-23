@@ -40,13 +40,11 @@
   <BuildCodeSource>$(PrefixeSource)\sources\MokaDocos</BuildCodeSource> 
 </PropertyGroup>
 <ItemGroup>
-    <MesFichiersSource Include="$(CodeSourceRepo)*.cs"/>
-   <MesFichiersSource Include="$(CodeSourceRepo)**\*.cs" />
-   <MesFichiersSource Include="$(CodeSourceRepo)*.htm*"/>
-   <MesFichiersSource Include="$(CodeSourceRepo)**\*.htm*"/>
-   <MesFichiersSource Remove="$(CodeSourceRepo)**\bin\*.*"/>
-   <MesFichiersSource Remove="$(CodeSourceRepo)**\obj\*.*"/>
-   <MesFichiersSource Remove="$(CodeSourceRepo)**\obj\Debug\*.*"/>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.cs"/>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\Utilitaires\*.cs"/>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.htm"/>
+    
+   <MesFichiersSource Remove="$(CodeSourceRepo)MokaDocos\Program.cs"/>
 
 </ItemGroup>
 <RemoveDir  Directories="$(BuildSource)" />
