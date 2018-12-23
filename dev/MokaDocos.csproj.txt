@@ -1,12 +1,12 @@
 <Project DefaultTargets="main">
 
 <PropertyGroup>
+    <PrefixeSource>D:\DevCenter\build\TempBuild\</PrefixeSource>
     <OutputType>Dll</OutputType>
     <repository>d:\Devcenter\sources\</repository>
      <Logiciel>MokaDocos</Logiciel>
     <VersionLogiciel>0.1.1</VersionLogiciel>
-<OutputDirectory>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\lib\</OutputDirectory>
-   
+    <OutputDirectory>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\lib\</OutputDirectory>
 </PropertyGroup>
 
 <ItemGroup>
@@ -33,7 +33,28 @@
 
 
 <Target Name="main">
+  <CallTarget Targets="extrairesources" />
   <CallTarget Targets="MokaDocosnet45" />
+</Target>
+
+<Target Name="extrairesources">
+<PropertyGroup>
+  <CodeSourceRepo>$(repository)$(Logiciel)\</CodeSourceRepo> 
+  <BuildCodeSource>$(PrefixeSource)\sources\MokaDocos</BuildCodeSource> 
+</PropertyGroup>
+<ItemGroup>
+    <MesFichiersSource Include="$(CodeSourceRepo)*.cs"/>
+   <MesFichiersSource Include="$(CodeSourceRepo)*\*.cs" />
+   <MesFichiersSource Include="$(CodeSourceRepo)*.htm*"/>
+   <MesFichiersSource Include="$(CodeSourceRepo)*\*.htm*"/>
+</ItemGroup>
+<RemoveDir  Directories="$(BuildSource)" />
+  <MakeDir  Directories="$(BuildSource)" />
+  
+<Message Text="Extraire les sources de : @(MesFichiersSource->'$(BuildCodeSource)\%(RecursiveDir)%(Filename)%(Extension)')" />
+<Copy
+   SourceFiles="@(MesFichiersSource)"
+   DestinationFiles="@(MesFichiersSource->'$(BuildCodeSource)\%(RecursiveDir)%(Filename)%(Extension)')" />
 </Target>
 
 <Target Name="MokaDocosnet45">
@@ -45,8 +66,6 @@
   
 
   <Message Text="Builder : $(NugetOutputLib)" />
-  <RemoveDir  Directories="$(NugetOutputLib" />
-  <MakeDir  Directories="$(NugetOutputLib)" />
   
   <csc Sources="@(Compile)"
      OutputAssembly="$(NugetOutputLib)\$(Logiciel).dll"
