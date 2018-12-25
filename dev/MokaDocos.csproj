@@ -1,6 +1,9 @@
-<Project DefaultTargets="main">
-<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-<PropertyGroup>
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="main">
+  
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <PropertyGroup>
     <PrefixeSource>D:\DevCenter\build\TempBuild\</PrefixeSource>
     <OutputType>Library</OutputType>
     <repository>d:\Devcenter\sources\</repository>
@@ -57,6 +60,8 @@
 
 <Target Name="MokaDocosnet45">
  <PropertyGroup>
+   <ConfigurationType>DynamicLibrary</ConfigurationType>
+   <BaseOutputPath>$(NugetOutputLib)\</BaseOutputPath>
   <TargetFramework>net45</TargetFramework>
   <NugetOutputLib>$(OutputDirectory)$(TargetFramework)\</NugetOutputLib>
   <BuildCodeSource>$(PrefixeSource)\sources\MokaDocos</BuildCodeSource> 
@@ -64,14 +69,13 @@
 <ItemGroup>
     <Compile Include="$(BuildCodeSource)\**\*.cs"/>
 </ItemGroup>
- 
-  
 
-  <Message Text="Builder : $(NugetOutputLib)" />
+<Message Text="Builder : $(NugetOutputLib)" />
   
   <csc Sources="@(Compile)"
-     OutputAssembly="$(NugetOutputLib)\$(Logiciel).dll"
-     EmitDebugInformation="false"
+     OutputAssembly="$(Logiciel).dll"
+     
+       EmitDebugInformation="false"
      DocumentationFile="$(NugetOutputLib)\$(Logiciel).xml"
   />
 

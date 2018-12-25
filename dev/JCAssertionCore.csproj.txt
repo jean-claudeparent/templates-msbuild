@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2591A9DE-E6EC-4BE0-AFBE-175AE508AD8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JCAssertionnCore</RootNamespace>
+    <AssemblyName>JCAssertionnCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>JCAssertionnCore.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="JCACompare.cs" />
+    <Compile Include="JCAConsole.cs" />
+    <Compile Include="JCACore.cs" />
+    <Compile Include="JCAPontXMLCompteFichiers.cs" />
+    <Compile Include="JCAPontXMLAssertXPath.cs" />
+    <Compile Include="JCAPontXMLConnectionOracle.cs" />
+    <Compile Include="JCAPontXMLAssertSQL.cs" />
+    <Compile Include="JCAPontXMLHelper.cs" />
+    <Compile Include="JCASQLClient.cs" />
+    <Compile Include="JCAPontXML.cs" />
+    <Compile Include="JCAssertionException.cs" />
+    <Compile Include="JCAUtilitaireFichier.cs" />
+    <Compile Include="JCAUtilitaires.cs" />
+    <Compile Include="JCAVariable.cs" />
+    <Compile Include="JCAXML.cs" />
+    <Compile Include="JCAXMLHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JCAMiniCore\JCAMiniCore.csproj">
+      <Project>{3ef8fad4-6536-4b2c-979c-e4279d66957d}</Project>
+      <Name>JCAMiniCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCASQLODPCore\JCASQLODPCore.csproj">
+      <Project>{3e6da294-1737-4eaa-affe-85fc3e1cb136}</Project>
+      <Name>JCASQLODPCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
