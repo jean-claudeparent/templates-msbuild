@@ -60,18 +60,27 @@
 
 <Target Name="MokaDocosnet45">
  <PropertyGroup>
-   <ConfigurationType>DynamicLibrary</ConfigurationType>
+   <OutputType>Library</OutputType>
    <BaseOutputPath>$(NugetOutputLib)\</BaseOutputPath>
-  <TargetFramework>net45</TargetFramework>
+  <TargetFramework>v4.5</TargetFramework>
   <NugetOutputLib>$(OutputDirectory)$(TargetFramework)\</NugetOutputLib>
   <BuildCodeSource>$(PrefixeSource)\sources\MokaDocos</BuildCodeSource> 
  </PropertyGroup>
 <ItemGroup>
     <Compile Include="$(BuildCodeSource)\**\*.cs"/>
 </ItemGroup>
-
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
 <Message Text="Builder : $(NugetOutputLib)" />
-  
+  <Message Text="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
   <csc Sources="@(Compile)"
      OutputAssembly="$(Logiciel).dll"
      
