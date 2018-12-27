@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  
+  <Target Name="main">
+    <csc 
+     EmitDebugInformation="false"
+     DocumentationFile="bin\MokaDocos.xml"
+  />
+  </Target>
+
 </Project>

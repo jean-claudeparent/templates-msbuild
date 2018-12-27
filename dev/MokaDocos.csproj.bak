@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0"  DefaultTargets="main" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  
+  <PropertyGroup>
+    <PrefixeSource>D:\DevCenter\build\TempBuild\</PrefixeSource>
+    <repository>d:\Devcenter\sources\</repository>
+     <Logiciel>MokaDocos</Logiciel>
+    <VersionLogiciel>0.1.1</VersionLogiciel>
+    <OutputDirectory>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\lib\</OutputDirectory>
+</PropertyGroup>
+
+
+  <ItemGroup>
+    <None Remove=".DS_Store" />
+    <None Remove="MokaDocos-gabarit.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="MokaDocos-License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="MokaDocos-gabarit.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MokaDocos-gabarit.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+<Target Name="main">
+  <CallTarget Targets="extrairesources" />
+  <CallTarget Targets="MokaDocosnet45" />
+</Target>
+
+<Target Name="extrairesources">
+<PropertyGroup>
+  <CodeSourceRepo>$(repository)$(Logiciel)\</CodeSourceRepo> 
+  <BuildCodeSource>$(PrefixeSource)\sources\MokaDocos</BuildCodeSource> 
+</PropertyGroup>
+<ItemGroup>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.cs"/>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\Utilitaires\*.cs"/>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.htm"/>
+    
+   <MesFichiersSource Remove="$(CodeSourceRepo)MokaDocos\Program.cs"/>
+
+</ItemGroup>
+<RemoveDir  Directories="$(BuildSource)" />
+  <MakeDir  Directories="$(BuildSource)" />
+  
+<Copy
+   SourceFiles="@(MesFichiersSource)"
+   DestinationFiles="@(MesFichiersSource->'$(BuildCodeSource)\%(RecursiveDir)%(Filename)%(Extension)')" />
+</Target>
+
+<Target Name="MokaDocosnet45">
+ <PropertyGroup>
+   <OutputType>Library</OutputType>
+   <TargetFrameworks>net40-client</TargetFrameworks>
+   <BuildCodeSource>$(PrefixeSource)\sources\MokaDocos</BuildCodeSource>
+   <BaseOutputPath>$(NugetOutputLib)\</BaseOutputPath>
+
+ </PropertyGroup>
+<ItemGroup>
+    <Compile Include="$(BuildCodeSource)\**\*.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+<Message Text="Builder : $(NugetOutputLib)" />
+  <Message Text="Import:$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+
+  <csc Sources="@(Compile)"
+     EmitDebugInformation="false"
+     DocumentationFile="$(NugetOutputLib)\$(Logiciel).xml"
+  />
+
+
+</Target>
+</Project>
