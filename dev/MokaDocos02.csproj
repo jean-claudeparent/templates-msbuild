@@ -5,7 +5,7 @@
     <Configuration>Release</Configuration>
     <Platform>AnyCPU</Platform>
     <ProjectGuid>{2C5AECAF-0155-49FB-B075-C72E719AB0CA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>MokaDocos</RootNamespace>
     <AssemblyName>MokaDocos</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -33,6 +33,7 @@
     <None Include="App.config" />
   </ItemGroup>
   
+  
   <Target Name="main">
     <PropertyGroup>
       <PrefixeSource>D:\DevCenter\build\TempBuild\Sources\</PrefixeSource>
@@ -40,21 +41,35 @@
       <VersionLogiciel>0.1.1</VersionLogiciel>
       <NugetRoot>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\</NugetRoot>
       <OutputPath>d:\Devcenter\build\TempBuild\bin\$(Logiciel)\$(VersionLogiciel)\lib\</OutputPath>
+      
+
     </PropertyGroup>
+    
     <ItemGroup>
       <Compile Include="$(PrefixeSource)$(Logiciel)\**\*.cs" />      
     </ItemGroup>
-    
+    <ItemGroup>
+      <MesFichiersSource Include="$(PrefixeSource)$(Logiciel)\gab*.htm*"/>
+      <MesFichiersSource Include="$(PrefixeSource)$(Logiciel)\lic*.*"/>
+
+    </ItemGroup>
+
+
     <Message Text=" Compilation .net 4.5" />
     <RemoveDir  Directories="$(NugetRoot)" />
     <MakeDir  Directories="$(NugetRoot)" />
     <RemoveDir  Directories="$(OutputPath)" />
     <MakeDir  Directories="$(OutputPath)" />
-
+    
     <csc Sources="@(Compile)"
      EmitDebugInformation="false"
      DocumentationFile="$(NugetRoot)MokaDocos.xml"
-  />
+     OutputAssembly="$(OutputPath)MokaDocos.dll" />
+   <Copy
+     SourceFiles="@(MesFichiersSource)"
+     DestinationFiles="@(MesFichiersSource->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" />
+
+
   </Target>
 
 </Project>
