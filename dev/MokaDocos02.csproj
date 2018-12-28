@@ -49,8 +49,8 @@
       <Compile Include="$(PrefixeSource)$(Logiciel)\**\*.cs" />      
     </ItemGroup>
     <ItemGroup>
-      <MesFichiersSource Include="$(PrefixeSource)$(Logiciel)\gab*.htm*"/>
-      <MesFichiersSource Include="$(PrefixeSource)$(Logiciel)\lic*.*"/>
+      <MesFichiersSource Include="$(PrefixeSource)$(Logiciel)\M*gab*.htm*"/>
+      <MesFichiersSource Include="$(PrefixeSource)$(Logiciel)\M*lic*.*"/>
 
     </ItemGroup>
 
