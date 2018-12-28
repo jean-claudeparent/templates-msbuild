@@ -64,8 +64,11 @@
     <csc Sources="@(Compile)"
      EmitDebugInformation="false"
      DocumentationFile="$(NugetRoot)MokaDocos.xml"
-     OutputAssembly="$(OutputPath)MokaDocos.dll" />
-   <Copy
+     OutputAssembly="$(OutputPath)MokaDocos.dll"
+         TargetType="Library"/>
+   
+    
+    <Copy
      SourceFiles="@(MesFichiersSource)"
      DestinationFiles="@(MesFichiersSource->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" />
 
