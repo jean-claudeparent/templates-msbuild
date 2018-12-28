@@ -43,8 +43,10 @@
 <ItemGroup>
     <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.cs"/>
     <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\Utilitaires\*.cs"/>
-    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.htm"/>
-<MesFichiersSource Include="$(Templates)MokaDocos02*"/>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.htm*"/>
+    <MesFichiersSource Include="$(CodeSourceRepo)MokaDocos\*.txt"/>
+
+    <MesFichiersSource Include="$(Templates)MokaDocos02.cs*"/>
 </ItemGroup>
 <RemoveDir  Directories="$(BuildSource)" />
   <MakeDir  Directories="$(BuildSource)" />
